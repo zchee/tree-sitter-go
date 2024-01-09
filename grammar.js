@@ -862,11 +862,14 @@ module.exports = grammar({
       '"',
       repeat(choice(
         $._interpreted_string_literal_basic_content,
+        $.format_verb,
         $.escape_sequence,
       )),
       token.immediate('"'),
     ),
-    _interpreted_string_literal_basic_content: _ => token.immediate(prec(1, /[^"\n\\]+/)),
+    _interpreted_string_literal_basic_content: _ => token.immediate(prec(1, /[^"\n\\%]+/)),
+
+    format_verb: _ => token.immediate(seq('%', choice(/[a-x,A-X,%]/))),
 
     escape_sequence: _ => token.immediate(seq(
       '\\',

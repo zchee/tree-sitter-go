@@ -820,7 +820,8 @@ func main() {
                             (identifier)
                             (field_identifier))
                           (argument_list
-                            (interpreted_string_literal)
+                            (interpreted_string_literal
+                              (format_verb))
                             (index_expression
                               (identifier)
                               (identifier)))))))))
